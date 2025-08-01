@@ -1,4 +1,7 @@
 import streamlit as st
+import pandas as pd
+from datetime import datetime
+import os
 
 # --- App Title ---
 st.title("Change Management Assessment Dossier")
@@ -36,3 +39,32 @@ if st.button("Generate Summary"):
     st.markdown(f"- EIA-649 Compliance: {'✅' if eia_check else '❌'}")
     st.markdown(f"- Traceability: {'✅' if traceability else '❌'}")
     st.markdown(f"- Stakeholder Review: {'✅' if stakeholder_review else '❌'}")
+
+
+# ...
+if st.button("Generate Summary"):
+    # Display results in the app
+    st.markdown("### Assessment Dossier")
+    # (existing st.markdown calls...)
+
+    # Save data to CSV
+    data = {
+        "Timestamp": datetime.now().isoformat(),
+        "Track Type": track_type,
+        "Title": change_title,
+        "Change ID": change_id,
+        "Owner": change_owner,
+        "CM2": cm2_check,
+        "EIA-649": eia_check,
+        "Traceability": traceability,
+        "Stakeholder Review": stakeholder_review
+    }
+
+    df = pd.DataFrame([data])
+
+    if os.path.exists("dossiers.csv"):
+        df.to_csv("dossiers.csv", mode='a', header=False, index=False)
+    else:
+        df.to_csv("dossiers.csv", index=False)
+
+    st.success("Dossier saved to `dossiers.csv`")
