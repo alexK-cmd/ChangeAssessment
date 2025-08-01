@@ -40,13 +40,6 @@ if st.button("Generate Summary"):
     st.markdown(f"- Traceability: {'✅' if traceability else '❌'}")
     st.markdown(f"- Stakeholder Review: {'✅' if stakeholder_review else '❌'}")
 
-
-# ...
-if st.button("Generate Summary"):
-    # Display results in the app
-    st.markdown("### Assessment Dossier")
-    # (existing st.markdown calls...)
-
     # Save data to CSV
     data = {
         "Timestamp": datetime.now().isoformat(),
@@ -57,13 +50,13 @@ if st.button("Generate Summary"):
         "CM2": cm2_check,
         "EIA-649": eia_check,
         "Traceability": traceability,
-        "Stakeholder Review": stakeholder_review
+        "Stakeholder Review": stakeholder_review,
     }
 
     df = pd.DataFrame([data])
 
     if os.path.exists("dossiers.csv"):
-        df.to_csv("dossiers.csv", mode='a', header=False, index=False)
+        df.to_csv("dossiers.csv", mode="a", header=False, index=False)
     else:
         df.to_csv("dossiers.csv", index=False)
 

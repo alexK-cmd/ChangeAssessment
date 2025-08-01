@@ -21,3 +21,15 @@ This is a simple Streamlit app to help assess and document configuration change 
    ```bash
    git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
    cd YOUR_REPO
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r Requirements.txt
+   ```
+
+3. Start the app:
+   ```bash
+   streamlit run app.py
+   ```
+
